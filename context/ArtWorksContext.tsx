@@ -31,22 +31,44 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
     error: '',
   });
 
+  const errorHandler = useCallback(
+    (error: any) => {
+      if (error.response) {
+        setStatus({
+          loading: false,
+          error: `Server Error: ${error.response.status}`,
+        });
+      } else if (error.request) {
+        setStatus({
+          loading: false,
+          error: 'Network Error: No response received',
+        });
+      } else {
+        setStatus({loading: false, error: 'Request failed to initiate'});
+      }
+      console.log(status.error);
+    },
+    [status.error],
+  );
+
   const fetchAllArtWorks = useCallback(async () => {
-    setStatus({loading: true, error: ''});
+    setStatus({...status, loading: true, error: ''});
     try {
       const response = await getAllArtWorksList();
-      setArtWorks(response.data.data); // Set the artworks array
-      setPagination(response.data.pagination); // Set the pagination object
-      setStatus({loading: false, error: ''});
+      setArtWorks(response.data.data);
+      setPagination(response.data.pagination);
+      setStatus({...status, loading: false, error: ''});
     } catch (error) {
-      console.error('Error fetching artworks:', error);
-      setStatus({loading: false, error: 'Error fetching artworks'});
+      errorHandler(error);
+    } finally {
+      setStatus({...status, loading: false, error: ''});
     }
-  }, []);
+  }, [errorHandler, status]);
 
   useEffect(() => {
     fetchAllArtWorks();
-  }, [fetchAllArtWorks]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const contextValue: ArtWorksContenxtValue = {
     pagination: pagination || artWorksDefaultContext.pagination,
