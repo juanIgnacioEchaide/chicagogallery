@@ -6,11 +6,7 @@ interface FullSizeArtWorkProps {
 }
 export const FullSizeArtWork = ({lqip}: FullSizeArtWorkProps) => {
   return (
-    <Image
-      source={{uri: `data:image/gif;base64,${lqip}`}}
-      style={styles.image}
-      resizeMode="cover"
-    />
+    <Image source={{uri: `${lqip}`}} style={styles.image} resizeMode="cover" />
   );
 };
 

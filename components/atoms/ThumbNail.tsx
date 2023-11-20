@@ -24,7 +24,7 @@ export const ThumbNail = ({lqip}: ThumbNailProps) => {
         <ThumbNailSkeleton />
       ) : (
         <Image
-          source={{uri: `data:image/gif;base64,${lqip}`}}
+          source={{uri: `${lqip}`}}
           style={styles.image}
           resizeMode="cover"
           onLoad={handleLoad}
