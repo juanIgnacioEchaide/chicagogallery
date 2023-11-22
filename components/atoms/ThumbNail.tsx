@@ -12,7 +12,6 @@ export const ThumbNailSkeleton = () => (
 );
 
 export const ThumbNail = ({lqip}: ThumbNailProps) => {
-  console.log(lqip);
   return (
     <View style={styles.container}>
       <Image

@@ -16,7 +16,6 @@ export function ArtworksListScreen(): ReactNode {
   }
 
   const renderThumbNail = ({item}: {item: ArtWorkItem}) => {
-    console.log(item);
     return (
       <View style={styles.thumbNailContainer}>
         <ThumbNail lqip={item.thumbnail.lqip} />
