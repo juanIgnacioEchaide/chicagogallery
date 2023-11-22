@@ -27,48 +27,37 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
   const [artWorks, setArtWorks] = useState<ArtWorkItem[]>([]);
   const [pagination, setPagination] = useState<Pagination | undefined>();
   const [status, setStatus] = useState<{loading: boolean; error: string}>({
-    loading: false,
+    loading: true,
     error: '',
   });
 
-  const errorHandler = useCallback(
-    (error: any) => {
-      if (error.response) {
-        setStatus({
-          loading: false,
-          error: `Server Error: ${error.response.status}`,
-        });
-      } else if (error.request) {
-        setStatus({
-          loading: false,
-          error: 'Network Error: No response received',
-        });
-      } else {
-        setStatus({loading: false, error: 'Request failed to initiate'});
-      }
-      console.log(status.error);
-    },
-    [status.error],
-  );
+  const errorHandler = useCallback((error: any) => {
+    let errorMessage = '';
+    if (error.response) {
+      errorMessage = `Server Error: ${error.response.status}`;
+    } else if (error.request) {
+      errorMessage = 'Network Error: No response received';
+    } else {
+      errorMessage = 'Request failed to initiate';
+    }
+    setStatus({loading: false, error: errorMessage});
+    console.error(errorMessage);
+  }, []);
 
   const fetchAllArtWorks = useCallback(async () => {
-    setStatus({...status, loading: true, error: ''});
     try {
       const response = await getAllArtWorksList();
       setArtWorks(response.data.data);
       setPagination(response.data.pagination);
-      setStatus({...status, loading: false, error: ''});
+      setStatus({loading: false, error: ''});
     } catch (error) {
       errorHandler(error);
-    } finally {
-      setStatus({...status, loading: false, error: ''});
     }
-  }, [errorHandler, status]);
+  }, [errorHandler]);
 
   useEffect(() => {
     fetchAllArtWorks();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchAllArtWorks]);
 
   const contextValue: ArtWorksContenxtValue = {
     pagination: pagination || artWorksDefaultContext.pagination,

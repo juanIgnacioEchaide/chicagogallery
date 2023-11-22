@@ -1,18 +1,66 @@
 import React, {ReactNode} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
+import {ArtWorkItem} from '../models/entity';
+import ThumbNail from '../components/atoms/ThumbNail';
 
 export function ArtworksListScreen(): ReactNode {
   const {data, status, pagination} = UseArtWorks();
 
   if (status?.loading) {
-    return <Text>LOADING</Text>;
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>LOADING</Text>
+      </View>
+    );
   }
 
+  const renderThumbNail = ({item}: {item: ArtWorkItem}) => {
+    console.log(item);
+    return (
+      <View style={styles.thumbNailContainer}>
+        <ThumbNail lqip={item.thumbnail.lqip} />
+      </View>
+    );
+  };
+
   return (
-    <View>
-      <Text>{JSON.stringify(data)}</Text>
-      <Text>{JSON.stringify(pagination)}</Text>
+    <View style={styles.screenContainer}>
+      <FlatList
+        data={data}
+        renderItem={renderThumbNail}
+        keyExtractor={item => item.id.toString()}
+        contentContainerStyle={styles.listContainer}
+      />
+      <View style={styles.screenContainer}>
+        <Text>{JSON.stringify(pagination)}</Text>
+      </View>
     </View>
   );
 }
+
+export const styles = StyleSheet.create({
+  loadingContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  paginationButtons: {
+    width: '100%',
+  },
+  screenContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  thumbNailContainer: {
+    marginVertical: 10,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  listContainer: {
+    paddingHorizontal: 16,
+  },
+});

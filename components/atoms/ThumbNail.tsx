@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ActivityIndicator, Image, StyleSheet, View} from 'react-native';
 
 interface ThumbNailProps {
@@ -12,24 +12,14 @@ export const ThumbNailSkeleton = () => (
 );
 
 export const ThumbNail = ({lqip}: ThumbNailProps) => {
-  const [loading, setLoading] = useState(true);
-
-  const handleLoad = () => {
-    setLoading(false);
-  };
-
+  console.log(lqip);
   return (
     <View style={styles.container}>
-      {loading ? (
-        <ThumbNailSkeleton />
-      ) : (
-        <Image
-          source={{uri: `${lqip}`}}
-          style={styles.image}
-          resizeMode="cover"
-          onLoad={handleLoad}
-        />
-      )}
+      <Image
+        source={{uri: `${lqip}`}}
+        style={styles.image}
+        resizeMode="repeat"
+      />
     </View>
   );
 };
