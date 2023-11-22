@@ -148,6 +148,7 @@ export interface AllArtWorksResponse {
 }
 
 export interface ArtWorksContenxtValue extends AllArtWorksResponse {
+  thumbnails: Thumbnail[];
   status: {
     loading: boolean;
     error: string;

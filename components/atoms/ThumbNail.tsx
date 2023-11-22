@@ -1,8 +1,11 @@
 import React from 'react';
-import {ActivityIndicator, Image, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 interface ThumbNailProps {
   lqip: string;
+  width?: number;
+  height?: number;
 }
 
 export const ThumbNailSkeleton = () => (
@@ -14,11 +17,7 @@ export const ThumbNailSkeleton = () => (
 export const ThumbNail = ({lqip}: ThumbNailProps) => {
   return (
     <View style={styles.container}>
-      <Image
-        source={{uri: `${lqip}`}}
-        style={styles.image}
-        resizeMode="stretch"
-      />
+      <FastImage source={{uri: lqip}} />
     </View>
   );
 };

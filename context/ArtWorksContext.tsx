@@ -1,7 +1,12 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {ReactNode, createContext} from 'react';
 import {getAllArtWorksList} from '../services/artworks';
-import {ArtWorkItem, ArtWorksContenxtValue, Pagination} from '../models/entity';
+import {
+  ArtWorkItem,
+  ArtWorksContenxtValue,
+  Pagination,
+  Thumbnail,
+} from '../models/entity';
 
 const artWorksDefaultContext: ArtWorksContenxtValue = {
   pagination: {
@@ -17,6 +22,7 @@ const artWorksDefaultContext: ArtWorksContenxtValue = {
     loading: false,
     error: '',
   },
+  thumbnails: [],
 };
 
 export const ArtWorksContext = createContext<ArtWorksContenxtValue>(
@@ -59,11 +65,24 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
     fetchAllArtWorks();
   }, [fetchAllArtWorks]);
 
-  const contextValue: ArtWorksContenxtValue = {
-    pagination: pagination || artWorksDefaultContext.pagination,
-    data: artWorks || artWorksDefaultContext.data,
-    status,
-  };
+  const thumbNailList = useMemo((): Thumbnail[] => {
+    return artWorks.map((item: ArtWorkItem) => ({...item.thumbnail}));
+  }, [artWorks]);
+
+  const contextValue = useMemo(() => {
+    return {
+      pagination: pagination || artWorksDefaultContext.pagination,
+      data: artWorks || artWorksDefaultContext.data,
+      thumbnails: thumbNailList,
+      status,
+    };
+  }, [pagination, artWorks, thumbNailList, status]);
+
+  useEffect(() => {
+    if (contextValue) {
+      console.log(contextValue);
+    }
+  }, [contextValue]);
 
   return (
     <ArtWorksContext.Provider value={contextValue}>
