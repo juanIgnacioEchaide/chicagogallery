@@ -18,7 +18,7 @@ export const ThumbNail = ({lqip}: ThumbNailProps) => {
       <Image
         source={{uri: `${lqip}`}}
         style={styles.image}
-        resizeMode="repeat"
+        resizeMode="stretch"
       />
     </View>
   );
