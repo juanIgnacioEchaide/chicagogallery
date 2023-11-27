@@ -55,6 +55,8 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
     }
   }, [errorHandler]);
 
+  // TODO fetchArtWorksByPage
+
   useEffect(() => {
     fetchAllArtWorks();
   }, [fetchAllArtWorks]);

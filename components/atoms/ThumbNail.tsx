@@ -15,9 +15,11 @@ export const ThumbNail = ({lqip}: ThumbNailProps) => {
   return (
     <View style={styles.container}>
       <Image
-        source={{uri: `${lqip}`}}
+        source={{
+          uri: `https://www.artic.edu/iiif/2/${lqip}/full/843,/0/default.jpg`,
+        }}
         style={styles.image}
-        resizeMode="stretch"
+        resizeMode="cover"
       />
     </View>
   );
@@ -25,12 +27,15 @@ export const ThumbNail = ({lqip}: ThumbNailProps) => {
 
 export const styles = StyleSheet.create({
   container: {
-    width: 200,
+    width: 400,
     height: 200,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 150,
   },
   skeleton: {
     width: 200,
