@@ -79,10 +79,10 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
   }, [pagination, artWorks, thumbNailList, status]);
 
   useEffect(() => {
-    if (contextValue) {
-      console.log(contextValue);
+    if (thumbNailList) {
+      console.log(thumbNailList);
     }
-  }, [contextValue]);
+  }, [thumbNailList]);
 
   return (
     <ArtWorksContext.Provider value={contextValue}>

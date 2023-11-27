@@ -18,11 +18,7 @@ export function ArtworksListScreen(): ReactNode {
   const renderThumbNail = ({item}: {item: ArtWorkItem}) => {
     return (
       <View style={styles.thumbNailContainer}>
-        <ThumbNail
-          lqip={item.thumbnail.lqip}
-          height={item.thumbnail.height}
-          width={item.thumbnail.width}
-        />
+        <ThumbNail lqip={item.image_id} />
       </View>
     );
   };

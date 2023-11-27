@@ -5,9 +5,7 @@ interface FullSizeArtWorkProps {
   lqip: string;
 }
 const FullSizeArtWork = ({lqip}: FullSizeArtWorkProps) => {
-  return (
-    <Image source={{uri: `${lqip}`}} style={styles.image} resizeMode="cover" />
-  );
+  return <Image source={{uri: lqip}} style={styles.image} resizeMode="cover" />;
 };
 
 const styles = StyleSheet.create({
