@@ -3,11 +3,13 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ArtWorkItem} from '../../models/entity';
 
 export const ThumbNail = (item: ArtWorkItem) => {
+  const artistName = item?.artist_title || 'Untitled';
+
   return (
     <TouchableOpacity style={styles.thumbNailContainer}>
       <View style={styles.descriptionContainer}>
-        <Text style={styles.artistName}>{item?.artist_title}</Text>
-        <Text style={styles.year}>-{item?.date_display}-</Text>
+        <Text style={styles.artistName}>{artistName}</Text>
+        <Text style={styles.year}>-{item?.date_display || 'Unknown'}-</Text>
         <Text style={styles.artworkTitle}>{item?.title}</Text>
       </View>
       <View style={styles.imageContainer}>
