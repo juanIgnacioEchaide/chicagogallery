@@ -2,7 +2,7 @@ import React, {ReactNode, useState} from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
-import {ThumbNail, PageNavigation} from '../components';
+import {ThumbNail, PageNavigation, CircularProgressBar} from '../components';
 import LoadingSVG from '../assets/loading.svg';
 import ErrorSVG from '../assets/error.svg';
 
@@ -13,7 +13,9 @@ export function ArtworksListScreen(): ReactNode {
   if (status?.loading || loadingPage) {
     return (
       <View style={styles.loadingContainer}>
-        <LoadingSVG />
+        <CircularProgressBar>
+          <LoadingSVG />
+        </CircularProgressBar>
       </View>
     );
   }
