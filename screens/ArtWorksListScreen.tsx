@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useState} from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
@@ -8,8 +8,9 @@ import ErrorSVG from '../assets/error.svg';
 
 export function ArtworksListScreen(): ReactNode {
   const {data, status, pagination} = UseArtWorks();
+  const [loadingPage, setLoadingPage] = useState<boolean>(false);
 
-  if (status?.loading) {
+  if (status?.loading || loadingPage) {
     return (
       <View style={styles.loadingContainer}>
         <LoadingSVG />
@@ -31,7 +32,6 @@ export function ArtworksListScreen(): ReactNode {
     return <ThumbNail {...item} />;
   };
 
-  console.log(pagination);
   return (
     <View style={styles.screenContainer}>
       <FlatList
@@ -44,6 +44,7 @@ export function ArtworksListScreen(): ReactNode {
         limit={pagination.limit}
         currentPage={pagination.current_page}
         total={pagination.total_pages}
+        setLoadingPage={setLoadingPage}
       />
     </View>
   );
@@ -54,6 +55,13 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    opacity: 0.4,
     justifyContent: 'center',
     alignItems: 'center',
   },

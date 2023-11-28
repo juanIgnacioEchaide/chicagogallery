@@ -59,6 +59,7 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
 
   const fetchArtWorksByPage = useCallback(
     async (page: number) => {
+      setStatus({loading: true, error: ''});
       try {
         const response = await getArtWorksByPage(page, DEFAULT_LIMIT);
         setArtWorks(response.data.data);

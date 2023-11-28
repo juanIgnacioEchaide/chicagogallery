@@ -6,22 +6,32 @@ export const PageNavigation = ({
   currentPage,
   total,
   limit,
+  setLoadingPage, // Pass setLoadingPage as a prop
 }: {
   currentPage: number;
   total: number;
   limit: number;
+  setLoadingPage: React.Dispatch<React.SetStateAction<boolean>>; // Define the type for setLoadingPage
 }) => {
   const {fetchArtWorksByPage} = UseArtWorks();
 
-  const handlePreviousPage = useCallback(
-    () => currentPage > 1 && fetchArtWorksByPage(currentPage - 1, limit),
-    [currentPage, fetchArtWorksByPage, limit],
-  );
+  const handlePreviousPage = useCallback(() => {
+    if (currentPage > 1) {
+      setLoadingPage(true);
+      fetchArtWorksByPage(currentPage - 1, limit)
+        .then(() => setLoadingPage(false))
+        .catch(() => setLoadingPage(false));
+    }
+  }, [currentPage, fetchArtWorksByPage, limit, setLoadingPage]);
 
-  const handleNextPage = useCallback(
-    () => currentPage < total && fetchArtWorksByPage(currentPage + 1, limit),
-    [currentPage, fetchArtWorksByPage, total, limit],
-  );
+  const handleNextPage = useCallback(() => {
+    if (currentPage < total && total !== 0) {
+      setLoadingPage(true);
+      fetchArtWorksByPage(currentPage + 1, limit)
+        .then(() => setLoadingPage(false))
+        .catch(() => setLoadingPage(false));
+    }
+  }, [currentPage, total, fetchArtWorksByPage, limit, setLoadingPage]);
 
   return (
     <View style={styles.container}>
