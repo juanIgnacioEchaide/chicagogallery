@@ -1,9 +1,10 @@
 import React, {ReactNode} from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet, Text} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
 import {ThumbNail, PageNavigation} from '../components';
 import LoadingSVG from '../assets/loading.svg';
+import ErrorSVG from '../assets/error.svg';
 
 export function ArtworksListScreen(): ReactNode {
   const {data, status, pagination} = UseArtWorks();
@@ -12,6 +13,16 @@ export function ArtworksListScreen(): ReactNode {
     return (
       <View style={styles.loadingContainer}>
         <LoadingSVG />
+      </View>
+    );
+  }
+
+  if (status?.error) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ErrorSVG />
+        <Text>Ups</Text>
+        <Text>Try again in a few minutes</Text>
       </View>
     );
   }
