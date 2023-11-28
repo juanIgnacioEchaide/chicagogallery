@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
 import {ThumbNail, PageNavigation} from '../components';
@@ -11,7 +11,6 @@ export function ArtworksListScreen(): ReactNode {
     return (
       <View style={styles.loadingContainer}>
         <Text>LOADING</Text>
-        <Image source={require('../assets/logo.svg')} />
       </View>
     );
   }

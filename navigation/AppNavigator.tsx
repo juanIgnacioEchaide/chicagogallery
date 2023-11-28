@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ArtworksListScreen, SingleArtworkScreen} from '../screens';
 import {NavigationContainer} from '@react-navigation/native';
-import {FullGalleryHeader} from '../components/atoms/FullGalleryHeader';
+import LogoSVG from '../assets/logo.svg';
 
 const Stack = createStackNavigator();
 
@@ -11,11 +11,20 @@ const AppNavigator = () => (
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         options={{
-          headerTitle: 'Full Gallery',
+          headerTitle: 'FULL GALLERY',
+          headerTintColor: '#333333',
+          headerTitleStyle: {
+            fontFamily: 'Verdana, sans-serif',
+            fontSize: 20,
+            fontWeight: '700',
+          },
           headerTitleAlign: 'center',
           // eslint-disable-next-line react/no-unstable-nested-components
-          headerRight: () => <FullGalleryHeader />,
-          headerLeftContainerStyle: {paddingLeft: 10},
+          headerLeft: () => {
+            return <LogoSVG />;
+          },
+          headerLeftContainerStyle: {paddingLeft: 40},
+          headerStyle: {height: 80},
           headerShown: true,
         }}
         name="ArtworksList"
