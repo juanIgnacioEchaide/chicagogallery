@@ -2,4 +2,4 @@ export * from './FullSizeArtWork';
 export * from './ThumbNail';
 export * from './ArtWorksContainer';
 export * from './CustomHeader';
-export * from './CircularProgressBar';
+export * from './RotatingContainer';

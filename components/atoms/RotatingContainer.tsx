@@ -1,7 +1,7 @@
 import React, {ReactNode, useMemo} from 'react';
 import {View, StyleSheet, Animated, Easing} from 'react-native';
 
-export const CircularProgressBar = ({children}: {children: ReactNode}) => {
+export const RotatingContainer = ({children}: {children: ReactNode}) => {
   const spinValue = useMemo(() => new Animated.Value(0), []);
 
   React.useEffect(() => {
@@ -39,12 +39,7 @@ const styles = StyleSheet.create({
   progressContainer: {
     width: 50,
     height: 50,
-    borderRadius: 25,
-    borderWidth: 2,
-    borderColor: '#ccc',
     justifyContent: 'center',
     alignItems: 'center',
   },
 });
-
-export default CircularProgressBar;
