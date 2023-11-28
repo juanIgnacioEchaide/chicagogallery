@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {ReactNode, useEffect} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {StyleSheet, View} from 'react-native';
 import {RootStackParamList} from '../navigation';
@@ -10,7 +10,7 @@ export type SingleArtworkScreenProps = NativeStackScreenProps<
   'SingleArtwork'
 >;
 
-export const SingleArtworkScreen = () => {
+export const SingleArtworkScreen = (): ReactNode => {
   const route = useRoute<SingleArtworkScreenProps['route']>();
   const {params} = route;
 
