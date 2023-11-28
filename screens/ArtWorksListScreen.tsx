@@ -1,8 +1,9 @@
 import React, {ReactNode} from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
 import {ThumbNail, PageNavigation} from '../components';
+import LoadingSVG from '../assets/loading.svg';
 
 export function ArtworksListScreen(): ReactNode {
   const {data, status, pagination} = UseArtWorks();
@@ -10,7 +11,7 @@ export function ArtworksListScreen(): ReactNode {
   if (status?.loading) {
     return (
       <View style={styles.loadingContainer}>
-        <Text>LOADING</Text>
+        <LoadingSVG />
       </View>
     );
   }
@@ -40,6 +41,7 @@ export function ArtworksListScreen(): ReactNode {
 export const styles = StyleSheet.create({
   loadingContainer: {
     width: '100%',
+    height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

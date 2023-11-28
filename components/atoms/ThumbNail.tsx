@@ -1,10 +1,10 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ArtWorkItem} from '../../models/entity';
 
 export const ThumbNail = (item: ArtWorkItem) => {
   return (
-    <View style={styles.thumbNailContainer}>
+    <TouchableOpacity style={styles.thumbNailContainer}>
       <View style={styles.descriptionContainer}>
         <Text style={styles.artistName}>{item?.artist_title}</Text>
         <Text style={styles.year}>-{item?.date_display}-</Text>
@@ -19,7 +19,7 @@ export const ThumbNail = (item: ArtWorkItem) => {
           resizeMode="cover"
         />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
