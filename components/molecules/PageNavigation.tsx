@@ -5,8 +5,8 @@ import UseArtWorks from '../../hooks/UseArtWorks';
 export const PageNavigation = ({
   currentPage,
   total,
-}: //limit,
-{
+  limit,
+}: {
   currentPage: number;
   total: number;
   limit: number;
@@ -14,13 +14,13 @@ export const PageNavigation = ({
   const {fetchArtWorksByPage} = UseArtWorks();
 
   const handlePreviousPage = useCallback(
-    () => currentPage > 1 && fetchArtWorksByPage(2),
-    [currentPage, fetchArtWorksByPage],
+    () => currentPage > 1 && fetchArtWorksByPage(currentPage - 1, limit),
+    [currentPage, fetchArtWorksByPage, limit],
   );
 
   const handleNextPage = useCallback(
-    () => currentPage < total && fetchArtWorksByPage(currentPage - 1),
-    [currentPage, fetchArtWorksByPage, total],
+    () => currentPage < total && fetchArtWorksByPage(currentPage + 1, limit),
+    [currentPage, fetchArtWorksByPage, total, limit],
   );
 
   return (

@@ -152,5 +152,5 @@ export interface ArtWorksContenxtValue extends AllArtWorksResponse {
     loading: boolean;
     error: string;
   };
-  fetchArtWorksByPage: (page: number) => Promise<void>;
+  fetchArtWorksByPage: (page: number, limit: number) => Promise<void>;
 }

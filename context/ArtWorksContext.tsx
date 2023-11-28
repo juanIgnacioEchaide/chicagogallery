@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {ReactNode, createContext} from 'react';
 import {getAllArtWorksList, getArtWorksByPage} from '../services/artworks';
 import {ArtWorkItem, ArtWorksContenxtValue, Pagination} from '../models/entity';
+import {DEFAULT_LIMIT} from '../constants';
 
 const artWorksDefaultContext: ArtWorksContenxtValue = {
   pagination: {
@@ -59,7 +60,7 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
   const fetchArtWorksByPage = useCallback(
     async (page: number) => {
       try {
-        const response = await getArtWorksByPage(page);
+        const response = await getArtWorksByPage(page, DEFAULT_LIMIT);
         setArtWorks(response.data.data);
         setPagination(response.data.pagination);
         setStatus({loading: false, error: ''});

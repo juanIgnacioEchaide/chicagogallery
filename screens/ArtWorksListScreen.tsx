@@ -21,7 +21,7 @@ export function ArtworksListScreen(): ReactNode {
     return (
       <View style={styles.loadingContainer}>
         <ErrorSVG />
-        <Text>Ups</Text>
+        <Text>Ups!</Text>
         <Text>Try again in a few minutes</Text>
       </View>
     );

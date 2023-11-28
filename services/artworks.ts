@@ -13,9 +13,10 @@ export const getAllArtWorksList = async (): Promise<
 
 export const getArtWorksByPage = async (
   page: number,
+  limit: number,
 ): Promise<AxiosResponse<AllArtWorksResponse>> => {
   const data: AxiosResponse<AllArtWorksResponse> = await axiosClient.get(
-    `artworks/?page=${page}`,
+    `artworks?page=${page}&limit=${limit}`,
   );
   return data;
 };
