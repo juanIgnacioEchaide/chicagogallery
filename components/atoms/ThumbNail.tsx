@@ -1,12 +1,19 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {ArtWorkItem} from '../../models/entity';
+import {SingleArtworkScreenProps} from '../../screens';
 
-export const ThumbNail = (item: ArtWorkItem) => {
+export const ThumbNail = ({item}: {item: ArtWorkItem}) => {
+  const navigation = useNavigation<SingleArtworkScreenProps['navigation']>();
   const artistName = item?.artist_title || 'Untitled';
 
+  const handlePress = () => {
+    navigation.navigate('SingleArtwork', {artWork: item});
+  };
+
   return (
-    <TouchableOpacity style={styles.thumbNailContainer}>
+    <TouchableOpacity style={styles.thumbNailContainer} onPress={handlePress}>
       <View style={styles.descriptionContainer}>
         <Text style={styles.artistName}>{artistName}</Text>
         <Text style={styles.year}>-{item?.date_display || 'Unknown'}-</Text>
@@ -15,7 +22,7 @@ export const ThumbNail = (item: ArtWorkItem) => {
       <View style={styles.imageContainer}>
         <Image
           source={{
-            uri: `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`,
+            uri: `https://www.artic.edu/iiif/2/${item?.image_id}/full/843,/0/default.jpg`,
           }}
           style={styles.image}
           resizeMode="cover"
@@ -68,5 +75,3 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
 });
-
-export default ThumbNail;

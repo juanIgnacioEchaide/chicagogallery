@@ -31,7 +31,7 @@ export function ArtworksListScreen(): ReactNode {
   }
 
   const renderThumbNail = ({item}: {item: ArtWorkItem}) => {
-    return <ThumbNail {...item} />;
+    return <ThumbNail item={item} />;
   };
 
   return (

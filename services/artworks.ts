@@ -8,6 +8,7 @@ export const getAllArtWorksList = async (): Promise<
   const data: AxiosResponse<AllArtWorksResponse> = await axiosClient.get(
     '/artworks',
   );
+  console.log('getAllArtWorksList', data);
   return data;
 };
 
@@ -18,5 +19,6 @@ export const getArtWorksByPage = async (
   const data: AxiosResponse<AllArtWorksResponse> = await axiosClient.get(
     `artworks?page=${page}&limit=${limit}`,
   );
+  console.log('getArtWorksByPage', data);
   return data;
 };
