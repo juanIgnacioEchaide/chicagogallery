@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {ReactNode, createContext} from 'react';
-import {getAllArtWorksList} from '../services/artworks';
+import {getAllArtWorksList, getArtWorksByPage} from '../services/artworks';
 import {ArtWorkItem, ArtWorksContenxtValue, Pagination} from '../models/entity';
 
 const artWorksDefaultContext: ArtWorksContenxtValue = {
@@ -17,6 +17,7 @@ const artWorksDefaultContext: ArtWorksContenxtValue = {
     loading: false,
     error: '',
   },
+  fetchArtWorksByPage: async () => {},
 };
 
 export const ArtWorksContext = createContext<ArtWorksContenxtValue>(
@@ -55,7 +56,19 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
     }
   }, [errorHandler]);
 
-  // TODO fetchArtWorksByPage
+  const fetchArtWorksByPage = useCallback(
+    async (page: number) => {
+      try {
+        const response = await getArtWorksByPage(page);
+        setArtWorks(response.data.data);
+        setPagination(response.data.pagination);
+        setStatus({loading: false, error: ''});
+      } catch (error) {
+        errorHandler(error);
+      }
+    },
+    [errorHandler],
+  );
 
   useEffect(() => {
     fetchAllArtWorks();
@@ -64,6 +77,7 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
   const contextValue: ArtWorksContenxtValue = {
     pagination: pagination || artWorksDefaultContext.pagination,
     data: artWorks || artWorksDefaultContext.data,
+    fetchArtWorksByPage,
     status,
   };
 

@@ -3,12 +3,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {ArtworksListScreen, SingleArtworkScreen} from '../screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {CustomHeader} from '../components';
-import {ArtWorkItem} from '../models/entity';
 
 const Stack = createStackNavigator();
 export type RootStackParamList = {
   ArtworksList: undefined;
-  SingleArtwork: {artWork: ArtWorkItem};
+  SingleArtwork: undefined;
 };
 
 const AppNavigator = () => (
