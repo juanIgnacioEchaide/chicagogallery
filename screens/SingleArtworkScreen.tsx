@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {View, Text} from 'react-native';
 import {RootStackParamList} from '../navigation';
 
 export type SingleArtworkScreenProps = NativeStackScreenProps<
