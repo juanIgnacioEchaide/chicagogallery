@@ -4,3 +4,4 @@ export * from './CustomHeader';
 export * from './RotatingContainer';
 export * from './ArtWorkArticle';
 export * from './PageNavigation';
+export * from './FadingContainer';
