@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
-import ThumbNail from '../components/atoms/ThumbNail';
+import {ThumbNail, PageNavigation} from '../components';
 
 export function ArtworksListScreen(): ReactNode {
   const {data, status, pagination} = UseArtWorks();
@@ -17,20 +17,10 @@ export function ArtworksListScreen(): ReactNode {
   }
 
   const renderThumbNail = ({item}: {item: ArtWorkItem}) => {
-    return (
-      <View style={styles.thumbNailContainer}>
-        <View style={styles.descriptionContainer}>
-          <Text>{item.artist_title}</Text>
-          <Text>{item.date_display}</Text>
-          <Text>{item.title}</Text>
-        </View>
-        <View style={styles.imageContainer}>
-          <ThumbNail lqip={item.image_id} />
-        </View>
-      </View>
-    );
+    return <ThumbNail {...item} />;
   };
 
+  console.log(pagination);
   return (
     <View style={styles.screenContainer}>
       <FlatList
@@ -39,9 +29,11 @@ export function ArtworksListScreen(): ReactNode {
         keyExtractor={item => item.id.toString()}
         contentContainerStyle={styles.listContainer}
       />
-      <View>
-        <Text>{JSON.stringify(pagination)}</Text>
-      </View>
+      <PageNavigation
+        limit={pagination.limit}
+        currentPage={pagination.current_page}
+        total={pagination.total_pages}
+      />
     </View>
   );
 }
@@ -59,6 +51,16 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 200,
+  },
+  artistName: {
+    fontSize: 20,
+    fontWeight: '700',
+  },
+  year: {
+    fontWeight: '400',
+  },
+  artworkTitle: {
+    textAlign: 'justify',
   },
   imageContainer: {
     width: 200,
