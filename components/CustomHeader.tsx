@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoSVG from '../../assets/logo.svg';
+import LogoSVG from '../assets/logo.svg';
 import {StyleSheet, Text, View} from 'react-native';
 
 export const CustomHeader = () => {

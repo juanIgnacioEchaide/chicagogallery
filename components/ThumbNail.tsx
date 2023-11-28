@@ -1,8 +1,8 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {ArtWorkItem} from '../../models/entity';
-import {SingleArtworkScreenProps} from '../../screens';
+import {ArtWorkItem} from '../models/entity';
+import {SingleArtworkScreenProps} from '../screens';
 
 export const ThumbNail = ({item}: {item: ArtWorkItem}) => {
   const navigation = useNavigation<SingleArtworkScreenProps['navigation']>();

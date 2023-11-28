@@ -1,10 +1,11 @@
-import React, {ReactNode, useEffect} from 'react';
+import React, {ReactNode} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {RootStackParamList} from '../navigation';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {ArtworkArticle} from '../components';
-
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import BackSVG from '../assets/back.svg';
 export type SingleArtworkScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'SingleArtwork'
@@ -12,18 +13,16 @@ export type SingleArtworkScreenProps = NativeStackScreenProps<
 
 export const SingleArtworkScreen = (): ReactNode => {
   const route = useRoute<SingleArtworkScreenProps['route']>();
+  const navigation = useNavigation<SingleArtworkScreenProps['navigation']>();
   const {params} = route;
 
   const {artWork} = params;
 
-  useEffect(() => {
-    if (artWork) {
-      console.log('artWork', artWork);
-    }
-  }, [artWork]);
-
   return (
     <View style={styles.articleContainer}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text style={styles.backButton}>Back to gallery</Text>
+      </TouchableOpacity>
       <ArtworkArticle
         artist_display={artWork.artist_display}
         date_display={artWork.date_display}
@@ -38,7 +37,16 @@ export const SingleArtworkScreen = (): ReactNode => {
 const styles = StyleSheet.create({
   articleContainer: {
     alignItems: 'center',
+    justifyContent: 'flex-start',
+    textAlign: 'left',
     height: '100%',
     backgroundColor: 'white',
+  },
+  backButton: {
+    marginTop: 20,
+    borderWidth: 1,
+    padding: 10,
+    borderColor: '#3333',
+    borderRadius: 8,
   },
 });

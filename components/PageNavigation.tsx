@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {View, Button, StyleSheet, Text} from 'react-native';
-import UseArtWorks from '../../hooks/UseArtWorks';
+import UseArtWorks from '../hooks/UseArtWorks';
 
 export const PageNavigation = ({
   currentPage,
