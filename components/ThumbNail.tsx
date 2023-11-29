@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {ArtWorkItem} from '../models/entity';
 import {SingleArtworkScreenProps} from '../screens';
-import ErrorSVG from '../assets/error.svg';
+import {UnavailableImage} from './UnvailableImage';
 
 export const ThumbNail = ({item}: {item: ArtWorkItem}) => {
   const navigation = useNavigation<SingleArtworkScreenProps['navigation']>();
@@ -32,10 +32,7 @@ export const ThumbNail = ({item}: {item: ArtWorkItem}) => {
             resizeMode="cover"
           />
         ) : (
-          <View style={[styles.image, styles.unavailableContainer]}>
-            <ErrorSVG height={100} />
-            <Text style={styles.unavailableText}>Unavailable</Text>
-          </View>
+          <UnavailableImage />
         )}
       </View>
     </TouchableOpacity>

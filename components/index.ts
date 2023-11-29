@@ -1,3 +1,5 @@
+export * from './Loader';
+export * from './GenericError';
 export * from './ThumbNail';
 export * from './ArtWorksContainer';
 export * from './CustomHeader';
@@ -5,3 +7,4 @@ export * from './RotatingContainer';
 export * from './ArtWorkArticle';
 export * from './PageNavigation';
 export * from './FadingContainer';
+export * from './UnvailableImage';

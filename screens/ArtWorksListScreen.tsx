@@ -1,33 +1,19 @@
 import React, {ReactNode, useState} from 'react';
-import {View, FlatList, StyleSheet, Text} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
-import {ThumbNail, PageNavigation, RotatingContainer} from '../components';
-import LoadingSVG from '../assets/loading.svg';
-import ErrorSVG from '../assets/error.svg';
+import {ThumbNail, PageNavigation, Loader, GenericError} from '../components';
 
 export function ArtworksListScreen(): ReactNode {
   const {data, status, pagination} = UseArtWorks();
   const [loadingPage, setLoadingPage] = useState<boolean>(false);
 
   if (status?.loading || loadingPage) {
-    return (
-      <View style={styles.loadingContainer}>
-        <RotatingContainer>
-          <LoadingSVG />
-        </RotatingContainer>
-      </View>
-    );
+    return <Loader />;
   }
 
   if (status?.error) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ErrorSVG />
-        <Text>Ups!</Text>
-        <Text>Try again in a few minutes</Text>
-      </View>
-    );
+    return <GenericError />;
   }
 
   const renderThumbNail = ({item}: {item: ArtWorkItem}) => {
@@ -53,20 +39,6 @@ export function ArtworksListScreen(): ReactNode {
 }
 
 export const styles = StyleSheet.create({
-  loadingContainer: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  loadingOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    opacity: 0.4,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   descriptionContainer: {
     textAlign: 'left',
     display: 'flex',
