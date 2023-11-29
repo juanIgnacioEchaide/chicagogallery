@@ -25,7 +25,7 @@ export const ArtWorkImage = ({
           style={
             type === 'thumbnail' ? styles.thumbnailImage : styles.articleImage
           }
-          resizeMode="cover"
+          resizeMode={type === 'thumbnail' ? 'cover' : 'contain'}
         />
       ) : (
         <UnavailableImage />

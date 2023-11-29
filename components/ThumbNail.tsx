@@ -1,9 +1,10 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {ArtWorkItem} from '../models/entity';
 import {SingleArtworkScreenProps} from '../screens';
 import {UnavailableImage} from './UnvailableImage';
+import {ThumbnailSummary} from './ThumbnailSummary';
 
 export const ThumbNail = ({item}: {item: ArtWorkItem}) => {
   const navigation = useNavigation<SingleArtworkScreenProps['navigation']>();
@@ -17,11 +18,11 @@ export const ThumbNail = ({item}: {item: ArtWorkItem}) => {
 
   return (
     <TouchableOpacity style={styles.thumbNailContainer} onPress={handlePress}>
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.artistName}>{artistName}</Text>
-        <Text style={styles.year}>-{item?.date_display || 'Unknown'}-</Text>
-        <Text style={styles.artworkTitle}>{item?.title}</Text>
-      </View>
+      <ThumbnailSummary
+        artistName={artistName}
+        date_display={item?.date_display}
+        title={item?.title}
+      />
       <View style={styles.imageContainer}>
         {item?.image_id ? (
           <Image

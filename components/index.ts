@@ -8,3 +8,4 @@ export * from './ArtWorkArticle';
 export * from './PageNavigation';
 export * from './FadingContainer';
 export * from './UnvailableImage';
+export * from './ArticleSummary';

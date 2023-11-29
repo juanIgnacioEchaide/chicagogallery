@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ScrollView,
-  Dimensions,
-} from 'react-native';
+import {View, StyleSheet, ScrollView, Dimensions, Image} from 'react-native';
+import {ArticleSummary} from './ArticleSummary';
 
 export const ArtworkArticle = ({
   image_id,
@@ -29,34 +23,16 @@ export const ArtworkArticle = ({
 }) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-      <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.info}>
-          <Text style={styles.label}>Artist: </Text>
-          {artist_display}
-        </Text>
-        <Text style={styles.info}>
-          <Text style={styles.label}>Date: </Text>
-          {date_display}
-        </Text>
-        <Text style={styles.info}>
-          <Text style={styles.label}>Dimensions: </Text>
-          {dimensions}
-        </Text>
-        <Text style={styles.info}>
-          {material_titles && <Text style={styles.label}>Materials: </Text>}
-        </Text>
-        <Text style={styles.info}>
-          <Text style={styles.label}>Place of Origin: </Text>
-          {place_of_origin}
-        </Text>
-        {description && (
-          <View>
-            <Text style={styles.sectionTitle}>Description</Text>
-            <Text style={styles.description}>{description}</Text>
-          </View>
-        )}
-      </View>
+      <ArticleSummary
+        image_id={image_id}
+        artist_display={artist_display}
+        date_display={date_display}
+        description={description}
+        dimensions={dimensions}
+        material_titles={material_titles}
+        place_of_origin={place_of_origin}
+        title={title}
+      />
       <View style={styles.imageContainer}>
         <Image
           source={{
