@@ -6,12 +6,12 @@ export const PageNavigation = ({
   currentPage,
   total,
   limit,
-  setLoadingPage, // Pass setLoadingPage as a prop
+  setLoadingPage,
 }: {
   currentPage: number;
   total: number;
   limit: number;
-  setLoadingPage: React.Dispatch<React.SetStateAction<boolean>>; // Define the type for setLoadingPage
+  setLoadingPage: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const {fetchArtWorksByPage} = UseArtWorks();
 

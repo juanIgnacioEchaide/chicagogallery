@@ -4,7 +4,7 @@ import {
   ArtworksListScreen,
   SingleArtworkScreen,
   PlaceholderScreen,
-} from '../screens'; // Import PlaceholderScreen
+} from '../screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {CustomHeader} from '../components';
 import {ArtWorkItem} from '../models/entity';
@@ -41,7 +41,7 @@ const AppNavigator = () => {
           <Stack.Screen
             name="Placeholder"
             component={PlaceholderScreen}
-            options={{headerShown: false}} // Hide header for the placeholder
+            options={{headerShown: false}}
           />
         </Stack.Navigator>
       </NavigationContainer>
