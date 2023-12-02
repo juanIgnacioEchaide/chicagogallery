@@ -1,31 +1,21 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {RotatingContainer} from '../components';
-import LoadingSVG from '../assets/loading.svg';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 
-export const Loader = () => {
+export const Loader = ({loading}: {loading: boolean}) => {
   return (
-    <View style={styles.loadingContainer}>
-      <RotatingContainer>
-        <LoadingSVG />
-      </RotatingContainer>
-    </View>
+    <>
+      {loading && (
+        <View style={styles.loaderContainer}>
+          <ActivityIndicator size="large" color="#eee" />
+        </View>
+      )}
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  loadingContainer: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  loadingOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    opacity: 0.4,
-    justifyContent: 'center',
-    alignItems: 'center',
+  loaderContainer: {
+    verticalAlign: 'bottom',
+    marginVertical: 10,
   },
 });

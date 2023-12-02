@@ -49,13 +49,13 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
   const fetchAllArtWorks = useCallback(async () => {
     try {
       const response = await getAllArtWorksList();
-      setArtWorks(response.data.data);
+      setArtWorks([...artWorks, ...response.data.data]);
       setPagination(response.data.pagination);
       setStatus({loading: false, error: ''});
     } catch (error) {
       errorHandler(error);
     }
-  }, [errorHandler]);
+  }, [artWorks, errorHandler]);
 
   const fetchArtWorksByPage = useCallback(
     async (page: number) => {

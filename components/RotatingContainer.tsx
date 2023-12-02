@@ -1,10 +1,10 @@
-import React, {ReactNode, useMemo} from 'react';
+import React, {ReactNode, useMemo, useEffect} from 'react';
 import {View, StyleSheet, Animated, Easing} from 'react-native';
 
 export const RotatingContainer = ({children}: {children: ReactNode}) => {
   const spinValue = useMemo(() => new Animated.Value(0), []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     Animated.loop(
       Animated.timing(spinValue, {
         toValue: 1,
