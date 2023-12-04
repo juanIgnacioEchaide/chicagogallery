@@ -1,5 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {ReactNode, createContext} from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  createContext,
+  ReactNode,
+} from 'react';
 import {getAllArtWorksList, getArtWorksByPage} from '../services/artworks';
 import {ArtWorkItem, ArtWorksContenxtValue, Pagination} from '../models/entity';
 import {DEFAULT_LIMIT} from '../constants';
@@ -44,35 +49,35 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
       errorMessage = 'Request failed to initiate';
     }
     setStatus({loading: false, error: errorMessage});
-    console.error(errorMessage);
   }, []);
 
   const fetchAllArtWorks = useCallback(async () => {
     try {
       const response = await getAllArtWorksList();
-      setArtWorks([...artWorks, ...response.data.data]);
+      setArtWorks(response.data.data);
       setPagination(response.data.pagination);
       setStatus({loading: false, error: ''});
     } catch (error) {
       errorHandler(error);
     }
-  }, [artWorks, errorHandler]);
+  }, [errorHandler]);
 
-  const fetchArtWorksByPage = useCallback(
-    async (page: number) => {
-      setStatus({loading: true, error: ''});
-      try {
-        console.log('page', new Date(), page, status);
-        const response = await getArtWorksByPage(page, DEFAULT_LIMIT);
+  const fetchArtWorksByPage = useCallback(async () => {
+    setStatus({loading: true, error: ''});
+    try {
+      if (pagination && pagination.next_url) {
+        const response = await getArtWorksByPage(
+          Number(pagination?.next_url.split('?=')[1]),
+          DEFAULT_LIMIT,
+        );
         setArtWorks(prevArtWorks => [...prevArtWorks, ...response.data.data]);
         setPagination(response.data.pagination);
         setStatus({loading: false, error: ''});
-      } catch (error) {
-        errorHandler(error);
       }
-    },
-    [errorHandler, status],
-  );
+    } catch (error) {
+      errorHandler(error);
+    }
+  }, [errorHandler, pagination]);
 
   useEffect(() => {
     fetchAllArtWorks();

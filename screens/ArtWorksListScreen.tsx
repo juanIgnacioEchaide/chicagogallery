@@ -1,26 +1,26 @@
-import React, {ReactNode, useCallback} from 'react';
+import React, {ReactNode, useCallback, useState} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
 import {ThumbNail, GenericError, Loader} from '../components';
-import {DEFAULT_LIMIT} from '../constants';
 
 export function ArtworksListScreen(): ReactNode {
-  const {data, status, pagination, fetchArtWorksByPage} = UseArtWorks();
+  const {data, status, fetchArtWorksByPage} = UseArtWorks();
+  const [localError, setLocalError] = useState<boolean>(false);
 
   const loadArtWorks = useCallback(async () => {
     try {
-      fetchArtWorksByPage(pagination.current_page + 1, DEFAULT_LIMIT);
+      fetchArtWorksByPage();
     } catch (e: any) {
-      console.error('error');
+      setLocalError(true);
     }
-  }, [fetchArtWorksByPage, pagination.current_page]);
+  }, [fetchArtWorksByPage]);
 
   const renderThumbNail = ({item}: {item: ArtWorkItem}) => {
     return <ThumbNail item={item} />;
   };
 
-  if (status?.error) {
+  if (status?.error || localError) {
     return <GenericError />;
   }
 

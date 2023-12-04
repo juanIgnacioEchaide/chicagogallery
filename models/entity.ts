@@ -152,6 +152,6 @@ export interface ArtWorksContenxtValue extends AllArtWorksResponse {
     loading: boolean;
     error: string;
   };
-  fetchArtWorksByPage: (page: number, limit: number) => Promise<void>;
+  fetchArtWorksByPage: () => Promise<void>;
   setPagination: React.Dispatch<React.SetStateAction<Pagination | undefined>>;
 }
