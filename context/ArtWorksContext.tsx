@@ -19,6 +19,7 @@ const artWorksDefaultContext: ArtWorksContenxtValue = {
     error: '',
   },
   fetchArtWorksByPage: async () => {},
+  setPagination: () => {},
 };
 
 export const ArtWorksContext = createContext<ArtWorksContenxtValue>(
@@ -61,15 +62,16 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
     async (page: number) => {
       setStatus({loading: true, error: ''});
       try {
+        console.log('page', new Date(), page, status);
         const response = await getArtWorksByPage(page, DEFAULT_LIMIT);
-        setArtWorks(response.data.data);
+        setArtWorks(prevArtWorks => [...prevArtWorks, ...response.data.data]);
         setPagination(response.data.pagination);
         setStatus({loading: false, error: ''});
       } catch (error) {
         errorHandler(error);
       }
     },
-    [errorHandler],
+    [errorHandler, status],
   );
 
   useEffect(() => {
@@ -81,6 +83,7 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
     data: artWorks || artWorksDefaultContext.data,
     fetchArtWorksByPage,
     status,
+    setPagination,
   };
 
   return (

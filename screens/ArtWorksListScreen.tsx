@@ -1,4 +1,4 @@
-import React, {ReactNode, useCallback, useEffect} from 'react';
+import React, {ReactNode, useCallback} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import UseArtWorks from '../hooks/UseArtWorks';
 import {ArtWorkItem} from '../models/entity';
@@ -8,17 +8,13 @@ import {DEFAULT_LIMIT} from '../constants';
 export function ArtworksListScreen(): ReactNode {
   const {data, status, pagination, fetchArtWorksByPage} = UseArtWorks();
 
-  const loadMoreArtWorks = useCallback(() => {
-    if (!pagination) {
-      return;
+  const loadArtWorks = useCallback(async () => {
+    try {
+      fetchArtWorksByPage(pagination.current_page + 1, DEFAULT_LIMIT);
+    } catch (e: any) {
+      console.error('error');
     }
-    const nextPage = pagination.current_page + 1;
-    fetchArtWorksByPage(nextPage, DEFAULT_LIMIT);
-  }, [pagination, fetchArtWorksByPage]);
-
-  useEffect(() => {
-    loadMoreArtWorks();
-  }, [loadMoreArtWorks]);
+  }, [fetchArtWorksByPage, pagination.current_page]);
 
   const renderThumbNail = ({item}: {item: ArtWorkItem}) => {
     return <ThumbNail item={item} />;
@@ -33,10 +29,10 @@ export function ArtworksListScreen(): ReactNode {
       <FlatList
         data={data}
         renderItem={renderThumbNail}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => `${item.id}${Math.random()}`}
         contentContainerStyle={styles.listContainer}
         ListFooterComponent={Loader}
-        onEndReached={loadMoreArtWorks}
+        onEndReached={loadArtWorks}
         onEndReachedThreshold={0.3}
       />
     </View>
@@ -51,31 +47,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: 200,
   },
-  artistName: {
-    fontSize: 20,
-    fontWeight: '700',
-  },
-  year: {
-    fontWeight: '400',
-  },
-  artworkTitle: {
-    textAlign: 'justify',
-  },
-  imageContainer: {
-    width: 200,
-  },
-  paginationButtons: {
-    width: '100%',
-  },
   screenContainer: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  thumbNailContainer: {
-    marginVertical: 10,
-    display: 'flex',
-    flexDirection: 'row',
   },
   listContainer: {
     paddingHorizontal: 16,
