@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {getMaterialsSentence} from '../utils';
 
 export const ArticleSummary = ({
   artist_display,
@@ -35,11 +36,16 @@ export const ArticleSummary = ({
         {dimensions}
       </Text>
       <Text style={styles.info}>
-        {material_titles && <Text style={styles.label}>Materials: </Text>}
+        {material_titles && (
+          <>
+            <Text style={styles.label}>Materials: </Text>
+            {getMaterialsSentence(material_titles) || 'unknown'}
+          </>
+        )}
       </Text>
       <Text style={styles.info}>
         <Text style={styles.label}>Place of Origin: </Text>
-        {place_of_origin}
+        {place_of_origin || 'unknown'}
       </Text>
       {description && (
         <View>

@@ -8,6 +8,7 @@ import React, {
 import {getAllArtWorksList, getArtWorksByPage} from '../services/artworks';
 import {ArtWorkItem, ArtWorksContenxtValue, Pagination} from '../models/entity';
 import {DEFAULT_LIMIT} from '../constants';
+import {getPageNum} from '../utils/helper';
 
 const artWorksDefaultContext: ArtWorksContenxtValue = {
   pagination: {
@@ -67,7 +68,7 @@ export const ArtWorksProvider = ({children}: {children: ReactNode}) => {
     try {
       if (pagination && pagination.next_url) {
         const response = await getArtWorksByPage(
-          Number(pagination?.next_url.split('?=')[1]),
+          getPageNum(pagination.next_url),
           DEFAULT_LIMIT,
         );
         setArtWorks(prevArtWorks => [...prevArtWorks, ...response.data.data]);
