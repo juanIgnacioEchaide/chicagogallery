@@ -6,27 +6,6 @@
 ## DISCLAIMER
 This project is not ment to be a good example of UX/UI but only an exmaple of state managemente in some case scenario
 
-+----------------------------------------------------+
-|                  ArtWorksProvider                  |
-|                                                    |
-|  +----------------------------------------------+  |
-|  |                 ArtWorksContext              |  |
-|  |  - Pagination (total, limit, offset, etc.)   |  |
-|  |  - Artwork Data (data)                       |  |
-|  |  - Status (loading, error)                   |  |
-|  +----------------------------------------------+  |
-|                                                    |
-+----------------------------------------------------+
-|                                                    |
-|              ArtworksListScreen                    |
-|  +----------------------------------------------+  |
-|  |              FlatList (Artworks)             |  |
-|  |  - onEndReached -> loadArtWorks (Context)    |  |
-|  +----------------------------------------------+  |
-|                                                    |
-+----------------------------------------------------+
-
-
 ### clone rep
       git clone https://github.com/juanIgnacioEchaide/chicagogallery.git
 ### install dependencies
@@ -35,6 +14,29 @@ This project is not ment to be a good example of UX/UI but only an exmaple of st
       yarn start 
 ### run android
       yarn android
+
+### How does it work
+## ArtWorksProvider 🎨
+
+ArtWorksContext
+- Pagination (total, limit, offset, etc.)
+- Artwork Data (data)
+- Status (loading, error)
+
+shell
+
+
+## ArtworksListScreen 🖼️
+
+FlatList (Artworks)
+- onEndReached -> loadArtWorks (Context)
+
+javascript
+
+
+This represents the hierarchy of the `ArtWorksProvider` managing the context data within `ArtWorksContext` and `ArtworksListScreen` utilizing this context to handle the `FlatList` of artworks with an `onEndReached` event triggering `loadArtWorks` from the context.
+
+
    
 ## Captures
 
