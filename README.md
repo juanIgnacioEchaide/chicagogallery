@@ -1,7 +1,7 @@
 ## Features:
-   -Context API state-management
-   -Infinite scrolling
-   -React-router navigatior
+      - Context API state-management
+      - Infinite scrolling
+      - React-router navigatior
 
 ## DISCLAIMER
 This project is not ment to be a good example of UX/UI but only an exmaple of state managemente in some case scenario
