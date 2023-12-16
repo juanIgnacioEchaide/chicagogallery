@@ -3,19 +3,19 @@
    Infinite scrolling
    React-router navigatior
 
-### DISCLAIMER
+## DISCLAIMER
 This project is not ment to be a good example of UX/UI but only an exmaple of state managemente in some case scenario
 
-## clone repo
-   git clone https://github.com/juanIgnacioEchaide/chicagogallery.git
-## install dependencies
-   yarn
-## run metro terminal
-   yarn start 
-## run android
-   yarn android
+### clone rep
+      git clone https://github.com/juanIgnacioEchaide/chicagogallery.git
+### install dependencies
+      yarn
+### run metro terminal
+      yarn start 
+### run android
+      yarn android
    
-### Captures
+## Captures
 
 Fading Splash
 ![chicagogallery000](https://github.com/juanIgnacioEchaide/chicagogallery/assets/43832189/17b7d345-23f8-47ef-9507-8ba7a5ca9fa9)
