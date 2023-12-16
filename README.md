@@ -16,26 +16,11 @@ This project is not ment to be a good example of UX/UI but only an exmaple of st
       yarn android
 
 ### How does it work
-## ArtWorksProvider 🎨
 
-ArtWorksContext
-- Pagination (total, limit, offset, etc.)
-- Artwork Data (data)
-- Status (loading, error)
-
-shell
-
-
-## ArtworksListScreen 🖼️
-
-FlatList (Artworks)
-- onEndReached -> loadArtWorks (Context)
-
-javascript
+![Screenshot from 2023-12-16 00-14-21](https://github.com/juanIgnacioEchaide/chicagogallery/assets/43832189/413c4935-7bd2-42ad-91e0-779503bda9be)
 
 
 This represents the hierarchy of the `ArtWorksProvider` managing the context data within `ArtWorksContext` and `ArtworksListScreen` utilizing this context to handle the `FlatList` of artworks with an `onEndReached` event triggering `loadArtWorks` from the context.
-
 
    
 ## Captures
