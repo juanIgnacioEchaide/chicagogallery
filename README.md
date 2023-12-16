@@ -6,6 +6,27 @@
 ## DISCLAIMER
 This project is not ment to be a good example of UX/UI but only an exmaple of state managemente in some case scenario
 
++----------------------------------------------------+
+|                  ArtWorksProvider                  |
+|                                                    |
+|  +----------------------------------------------+  |
+|  |                 ArtWorksContext              |  |
+|  |  - Pagination (total, limit, offset, etc.)   |  |
+|  |  - Artwork Data (data)                       |  |
+|  |  - Status (loading, error)                   |  |
+|  +----------------------------------------------+  |
+|                                                    |
++----------------------------------------------------+
+|                                                    |
+|              ArtworksListScreen                    |
+|  +----------------------------------------------+  |
+|  |              FlatList (Artworks)             |  |
+|  |  - onEndReached -> loadArtWorks (Context)    |  |
+|  +----------------------------------------------+  |
+|                                                    |
++----------------------------------------------------+
+
+
 ### clone rep
       git clone https://github.com/juanIgnacioEchaide/chicagogallery.git
 ### install dependencies
