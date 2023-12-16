@@ -1,4 +1,4 @@
-## Features:
+## 'Chicagogallery is a react-native app by Juan Ignacio Echaide with main features:
       * Context API state-management
       * Infinite scrolling
       * React-router navigatior
