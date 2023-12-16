@@ -1,82 +1,65 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## Features:
+   Context API state-management
+   Infinite scrolling
+   React-router navigatior
 
-# Getting Started
+### DISCLAIMER
+This project is not ment to be a good example of UX/UI but only an exmaple of state managemente in some case scenario
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## clone repo
+   git clone https://github.com/juanIgnacioEchaide/chicagogallery.git
+## install dependencies
+   yarn
+## run metro terminal
+   yarn start 
+## run android
+   yarn android
+   
+### Captures
 
-## Step 1: Start the Metro Server
+Fading Splash
+![chicagogallery000](https://github.com/juanIgnacioEchaide/chicagogallery/assets/43832189/17b7d345-23f8-47ef-9507-8ba7a5ca9fa9)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+Infinite scrolling
+![chicagogallery001](https://github.com/juanIgnacioEchaide/chicagogallery/assets/43832189/77cec681-733e-407e-9c20-3e5fbd7495c0)
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Single item view
+![chicagogallery002](https://github.com/juanIgnacioEchaide/chicagogallery/assets/43832189/50f39f2b-64e4-4edc-9f1e-955869fa5d29)
 
-```bash
-# using npm
-npm start
+Generic error screen
+![chicagogallery004](https://github.com/juanIgnacioEchaide/chicagogallery/assets/43832189/9b7ead58-e306-4c95-919b-3f6dff31bda0)
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
-# chicagogallery
-# chicagogallery
-# chicagogallery
+### dependencies 
+ "dependencies": {
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/native-stack": "^6.9.17",
+    "@react-navigation/stack": "^6.3.20",
+    "axios": "^1.6.2",
+    "react": "18.2.0",
+    "react-native": "0.72.7",
+    "react-native-gesture-handler": "^2.13.4",
+    "react-native-reanimated": "^3.5.4",
+    "react-native-safe-area-context": "^4.7.4",
+    "react-native-screens": "^3.27.0",
+    "react-native-svg": "^14.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@react-native/eslint-config": "^0.72.2",
+    "@react-native/metro-config": "^0.72.11",
+    "@tsconfig/react-native": "^3.0.0",
+    "@types/react": "^18.0.24",
+    "@types/react-test-renderer": "^18.0.0",
+    "babel-jest": "^29.2.1",
+    "eslint": "^8.19.0",
+    "jest": "^29.2.1",
+    "metro-react-native-babel-preset": "0.76.8",
+    "prettier": "^2.4.1",
+    "react-native-svg-transformer": "^1.1.0",
+    "react-test-renderer": "18.2.0",
+    "typescript": "4.8.4"
+  },
